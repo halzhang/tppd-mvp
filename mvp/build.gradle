@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+    testOptions {
+        /*
+        使用 Unit test Android 系统的属性会失效,导致相关接口无法通过运行
+        Bundle#putString not mocked
+        see https://sites.google.com/a/android.com/tools/tech-docs/unit-testing-support
+        * */
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'io.reactivex:rxjava:1.0.9'
+    compile 'io.reactivex:rxandroid:0.24.0'
+    compile 'com.android.support:support-annotations:22.0.0'
+    androidTestCompile 'org.mockito:mockito-core:1.9.5'
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.0'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.0'
+    androidTestCompile 'com.android.support.test:runner:0.2'
+    // Set this dependency to use JUnit 4 rules
+    androidTestCompile 'com.android.support.test:rules:0.2'
+    // Set this dependency to build and run Espresso tests
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.1'
+    // Set this dependency to build and run UI Automator tests
+    //    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.0'
+    /*
+              testCompile 'junit:junit:4.12'
+              testCompile ('org.robolectric:robolectric:3.0-rc2'){
+                  exclude group: 'commons-logging', module: 'commons-logging'
+                  exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+              }
+              testCompile 'org.robolectric.gradle:gradle-android-test-plugin:0.10.0'
+              */
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile 'com.google.dexmaker:dexmaker:1.0'
+    testCompile 'com.google.dexmaker:dexmaker-mockito:1.0'
+    testCompile 'com.android.support.test:runner:0.2'
+    // Set this dependency to use JUnit 4 rules
+    testCompile 'com.android.support.test:rules:0.2'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:support-v4:22.1.1'
+}
