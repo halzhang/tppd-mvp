@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.halzhang.android.mvp.annotation.RequiresPresenter;
 import com.halzhang.android.mvp.manager.PresenterManager;
 import com.halzhang.android.mvp.presenter.Presenter;
-import com.halzhang.android.mvp.view.IView;
 
 /**
  * 封装{@link com.halzhang.android.mvp.manager.PresenterManager}接口
@@ -42,7 +41,7 @@ public class PresenterHelper<PresenterType extends Presenter> {
         return mPresenter == null ? null : PresenterManager.getInstance().save(mPresenter);
     }
 
-    public void attachView(Object view, Activity activity) {
+    public void attachView(Presenter.IView view, Activity activity) {
         if (mPresenter == null) {
             requestPresenter(view.getClass(), null);
         }

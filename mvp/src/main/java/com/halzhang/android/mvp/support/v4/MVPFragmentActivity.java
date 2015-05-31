@@ -11,7 +11,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
 /**
  * Created by Hal on 15/5/10.
  */
-public class MVPFragmentActivity<PresenterType extends Presenter> extends FragmentActivity {
+public abstract class MVPFragmentActivity<PresenterType extends Presenter> extends FragmentActivity implements Presenter.IView{
 
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();

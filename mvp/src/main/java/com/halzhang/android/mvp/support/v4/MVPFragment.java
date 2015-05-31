@@ -12,7 +12,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base mvp {@link Fragment}
  * Created by Hal on 15/5/10.
  */
-public class MVPFragment<PresenterType extends Presenter> extends Fragment {
+public abstract class MVPFragment<PresenterType extends Presenter> extends Fragment implements Presenter.IView {
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 

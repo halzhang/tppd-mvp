@@ -12,7 +12,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP {@link AppCompatActivity}
  * Created by Hal on 15/5/10.
  */
-public class MVPAppCompatActivity<PresenterType extends Presenter> extends AppCompatActivity {
+public abstract class MVPAppCompatActivity<PresenterType extends Presenter> extends AppCompatActivity implements Presenter.IView {
 
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();

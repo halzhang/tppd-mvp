@@ -6,13 +6,12 @@ import android.support.annotation.NonNull;
 
 import com.halzhang.android.mvp.Constants;
 import com.halzhang.android.mvp.presenter.Presenter;
-import com.halzhang.android.mvp.view.IView;
 
 /**
  * Base MVP activity.
  * Created by Hal on 15/4/27.
  */
-public class MVPActivity<PresenterType extends Presenter> extends Activity implements IView{
+public abstract class MVPActivity<PresenterType extends Presenter> extends Activity implements Presenter.IView{
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 

@@ -2,15 +2,32 @@ package com.halzhang.android.mvp.presenter;
 
 import android.os.Bundle;
 
-import com.halzhang.android.mvp.view.IView;
-
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * Presenter
  * Created by Hal on 15/4/27.
  */
-public class Presenter<ViewType> {
+public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackType> {
+
+    public interface IView<CallbackType> {
+        public void setCallback(CallbackType callback);
+    }
+
+    public CallbackType createViewCallback(IView view) {
+        return onCreateViewCallback(view);
+    }
+
+    /**
+     * 子类需要重写
+     *
+     * @param view
+     * @return
+     */
+    protected CallbackType onCreateViewCallback(IView view) {
+        return null;
+    }
 
     /**
      * Listen Presenter destroy.
@@ -21,7 +38,7 @@ public class Presenter<ViewType> {
 
     private ViewType mView;
 
-    private Vector<OnPresenterDestroyListener> mListeners = new Vector<OnPresenterDestroyListener>(0);
+    private CopyOnWriteArraySet<OnPresenterDestroyListener> mListeners = new CopyOnWriteArraySet<OnPresenterDestroyListener>();
 
     public ViewType getView() {
         return mView;

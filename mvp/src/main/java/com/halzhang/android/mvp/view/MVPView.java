@@ -14,7 +14,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP {@link View}
  * Created by Hal on 15/4/27.
  */
-public abstract class MVPView<PresenterType extends Presenter> extends View {
+public abstract class MVPView<PresenterType extends Presenter> extends View implements Presenter.IView {
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 

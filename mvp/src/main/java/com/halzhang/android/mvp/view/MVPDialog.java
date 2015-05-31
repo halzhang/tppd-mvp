@@ -13,7 +13,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP Dialog
  * Created by Hal on 15/4/27.
  */
-public class MVPDialog<PresenterType extends Presenter> extends Dialog {
+public abstract class MVPDialog<PresenterType extends Presenter> extends Dialog implements Presenter.IView{
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 

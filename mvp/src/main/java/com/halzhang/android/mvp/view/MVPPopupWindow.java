@@ -11,7 +11,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP {@link PopupWindow}
  * Created by Hal on 15/4/27.
  */
-public class MVPPopupWindow<PresenterType extends Presenter> extends PopupWindow {
+public abstract class MVPPopupWindow<PresenterType extends Presenter> extends PopupWindow implements Presenter.IView {
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 
