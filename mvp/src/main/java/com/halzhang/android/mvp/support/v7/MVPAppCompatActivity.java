@@ -12,7 +12,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP {@link AppCompatActivity}
  * Created by Hal on 15/5/10.
  */
-public abstract class MVPAppCompatActivity<PresenterType extends Presenter> extends AppCompatActivity implements Presenter.IView {
+public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback> extends AppCompatActivity implements Presenter.IView<IViewCallback> {
 
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
@@ -51,4 +51,12 @@ public abstract class MVPAppCompatActivity<PresenterType extends Presenter> exte
         super.onDestroy();
     }
 
+    @Override
+    public void setCallback(IViewCallback callback) {
+        onSetCallback(callback);
+    }
+
+    protected void onSetCallback(IViewCallback callback) {
+
+    }
 }

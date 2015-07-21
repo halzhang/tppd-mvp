@@ -9,6 +9,7 @@ import com.halzhang.android.mvp.app.PresenterHelper;
 import com.halzhang.android.mvp.presenter.Presenter;
 
 /**
+ * Base mvp {@link FragmentActivity}
  * Created by Hal on 15/5/10.
  */
 public abstract class MVPFragmentActivity<PresenterType extends Presenter> extends FragmentActivity implements Presenter.IView{

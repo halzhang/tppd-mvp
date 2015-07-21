@@ -11,10 +11,21 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackType> {
 
+    /**
+     * 视图业务接口
+     *
+     * @param <CallbackType> 视图回调接口，定义了从 Presenter 调用 view 的相关接口
+     */
     public interface IView<CallbackType> {
         public void setCallback(CallbackType callback);
     }
 
+    /**
+     * 创建视图回调接口,对于不同业务，回调是不同的
+     *
+     * @param view 视图业务接口
+     * @return
+     */
     public CallbackType createViewCallback(IView view) {
         return onCreateViewCallback(view);
     }
@@ -44,10 +55,22 @@ public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackT
         return mView;
     }
 
+    /**
+     * Add {@link Presenter} destroy listener
+     *
+     * @param listener {@link com.halzhang.android.mvp.presenter.Presenter.OnPresenterDestroyListener}
+     * @return {@code true} add success
+     */
     public boolean addDestroyListener(OnPresenterDestroyListener listener) {
         return mListeners.add(listener);
     }
 
+    /**
+     * Remove {@link Presenter} destroy listener
+     *
+     * @param listener {@link com.halzhang.android.mvp.presenter.Presenter.OnPresenterDestroyListener}
+     * @return
+     */
     private boolean removeDestroyListener(OnPresenterDestroyListener listener) {
         return mListeners.remove(listener);
     }
@@ -63,10 +86,12 @@ public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackT
     public void attachView(ViewType view) {
         mView = view;
         onAttachView(view);
+        mView.setCallback(createViewCallback(view));
     }
 
     public void detachView() {
         onDetachView();
+        mView.setCallback(null);
         mView = null;
     }
 
