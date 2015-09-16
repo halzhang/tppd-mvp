@@ -24,7 +24,7 @@ public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackT
      * 创建视图回调接口,对于不同业务，回调是不同的
      *
      * @param view 视图业务接口
-     * @return
+     * @return 视图回调接口
      */
     public CallbackType createViewCallback(IView view) {
         return onCreateViewCallback(view);

@@ -3,6 +3,7 @@ package com.halzhang.android.mvp.support.v7;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.halzhang.android.mvp.Constants;
 import com.halzhang.android.mvp.app.PresenterHelper;
@@ -14,6 +15,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  */
 public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback> extends AppCompatActivity implements Presenter.IView<IViewCallback> {
 
+    private static final String LOG_TAG = MVPAppCompatActivity.class.getSimpleName();
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 
@@ -57,6 +59,6 @@ public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback
     }
 
     protected void onSetCallback(IViewCallback callback) {
-
+        Log.d(LOG_TAG, "onSetCallback");
     }
 }
