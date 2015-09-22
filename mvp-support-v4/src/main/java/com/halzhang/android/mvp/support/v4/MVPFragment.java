@@ -29,7 +29,7 @@ public abstract class MVPFragment<PresenterType extends Presenter> extends Fragm
     @Override
     public void onResume() {
         super.onResume();
-        mHelper.attachView(this, getActivity());
+        mHelper.attachView(this);
     }
 
     @Override

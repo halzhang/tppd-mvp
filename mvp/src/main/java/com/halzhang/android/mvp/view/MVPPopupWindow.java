@@ -32,13 +32,14 @@ public abstract class MVPPopupWindow<PresenterType extends Presenter> extends Po
                     mOuterDismissListener.onDismiss();
                 }
                 mHelper.detachView();
+                mHelper.destroyPresenter();
             }
         });
         mHelper.requestPresenter(getClass(), null);
     }
 
     protected void onShow() {
-        mHelper.attachView(this, mActivity);
+        mHelper.attachView(this);
     }
 
     @Override

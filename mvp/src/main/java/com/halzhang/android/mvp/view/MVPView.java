@@ -53,7 +53,7 @@ public abstract class MVPView<PresenterType extends Presenter> extends View impl
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (!isInEditMode()) {
-            mHelper.attachView(this, (android.app.Activity) getContext());
+            mHelper.attachView(this);
         }
 
     }
@@ -62,5 +62,6 @@ public abstract class MVPView<PresenterType extends Presenter> extends View impl
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mHelper.detachView();
+        mHelper.destroyPresenter();
     }
 }

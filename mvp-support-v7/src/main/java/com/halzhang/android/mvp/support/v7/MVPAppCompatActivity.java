@@ -38,7 +38,7 @@ public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback
     @Override
     protected void onResume() {
         super.onResume();
-        mHelper.attachView(this, this);
+        mHelper.attachView(this);
     }
 
     @Override

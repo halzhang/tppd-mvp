@@ -1,6 +1,5 @@
 package com.halzhang.android.mvp.view;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -13,7 +12,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP Dialog
  * Created by Hal on 15/4/27.
  */
-public abstract class MVPDialog<PresenterType extends Presenter> extends Dialog implements Presenter.IView{
+public abstract class MVPDialog<PresenterType extends Presenter> extends Dialog implements Presenter.IView {
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 
@@ -41,15 +40,15 @@ public abstract class MVPDialog<PresenterType extends Presenter> extends Dialog 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        mHelper.attachView(this, (Activity) getContext());
+        mHelper.attachView(this);
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mHelper.detachView();
+        mHelper.destroyPresenter();
     }
-
 
 
 }

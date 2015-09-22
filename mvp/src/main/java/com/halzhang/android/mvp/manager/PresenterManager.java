@@ -6,6 +6,7 @@ import android.util.Printer;
 import com.halzhang.android.mvp.presenter.Presenter;
 
 /**
+ * Manager
  * Created by Hal on 15/4/27.
  */
 public abstract class PresenterManager {

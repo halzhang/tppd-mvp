@@ -11,7 +11,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP activity.
  * Created by Hal on 15/4/27.
  */
-public abstract class MVPActivity<PresenterType extends Presenter> extends Activity implements Presenter.IView{
+public abstract class MVPActivity<PresenterType extends Presenter> extends Activity {
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 
@@ -34,7 +34,9 @@ public abstract class MVPActivity<PresenterType extends Presenter> extends Activ
     @Override
     protected void onResume() {
         super.onResume();
-        mHelper.attachView(this, this);
+        if (this instanceof Presenter.IView) {
+            mHelper.attachView((Presenter.IView) this);
+        }
     }
 
     @Override

@@ -15,7 +15,6 @@ import com.halzhang.android.mvp.presenter.Presenter;
 public class PresenterHelper<PresenterType extends Presenter> {
 
     private PresenterType mPresenter;
-    private Activity mActivity;
 
     public PresenterType getPresenter() {
         return mPresenter;
@@ -41,24 +40,19 @@ public class PresenterHelper<PresenterType extends Presenter> {
         return mPresenter == null ? null : PresenterManager.getInstance().save(mPresenter);
     }
 
-    public void attachView(Presenter.IView view, Activity activity) {
+    public void attachView(Presenter.IView view) {
         if (mPresenter == null) {
             requestPresenter(view.getClass(), null);
         }
         if (mPresenter != null) {
             mPresenter.attachView(view);
         }
-        mActivity = activity;
     }
 
     public void detachView() {
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-        if (mActivity.isFinishing()) {
-            destroyPresenter();
-        }
-        mActivity = null;
     }
 
     private Class<PresenterType> findPresenterClass(Class<?> viewClass) {

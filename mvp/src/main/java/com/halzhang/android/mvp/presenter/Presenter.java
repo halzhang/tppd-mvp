@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * Presenter
  * Created by Hal on 15/4/27.
  */
-public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackType> {
+public abstract class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackType> {
 
     /**
      * 视图业务接口
@@ -26,26 +26,9 @@ public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackT
      * @param view 视图业务接口
      * @return 视图回调接口
      */
-    public CallbackType createViewCallback(IView view) {
-        return onCreateViewCallback(view);
-    }
+    public abstract CallbackType createViewCallback(IView view);
 
-    /**
-     * 子类需要重写
-     *
-     * @param view
-     * @return
-     */
-    protected CallbackType onCreateViewCallback(IView view) {
-        return null;
-    }
 
-    /**
-     * Listen Presenter destroy.
-     */
-    public interface OnPresenterDestroyListener {
-        void onDestroy(Presenter presenter);
-    }
 
     private ViewType mView;
 
@@ -53,26 +36,6 @@ public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackT
 
     public ViewType getView() {
         return mView;
-    }
-
-    /**
-     * Add {@link Presenter} destroy listener
-     *
-     * @param listener {@link com.halzhang.android.mvp.presenter.Presenter.OnPresenterDestroyListener}
-     * @return {@code true} add success
-     */
-    public boolean addDestroyListener(OnPresenterDestroyListener listener) {
-        return mListeners.add(listener);
-    }
-
-    /**
-     * Remove {@link Presenter} destroy listener
-     *
-     * @param listener {@link com.halzhang.android.mvp.presenter.Presenter.OnPresenterDestroyListener}
-     * @return
-     */
-    private boolean removeDestroyListener(OnPresenterDestroyListener listener) {
-        return mListeners.remove(listener);
     }
 
     public void create(Bundle saveState) {
@@ -112,6 +75,32 @@ public class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackT
     }
 
     protected void onDetachView() {
+    }
+
+    /**
+     * Listen Presenter destroy.
+     */
+    public interface OnPresenterDestroyListener {
+        void onDestroy(Presenter presenter);
+    }
+    /**
+     * Add {@link Presenter} destroy listener
+     *
+     * @param listener {@link com.halzhang.android.mvp.presenter.Presenter.OnPresenterDestroyListener}
+     * @return {@code true} add success
+     */
+    public boolean addDestroyListener(OnPresenterDestroyListener listener) {
+        return mListeners.add(listener);
+    }
+
+    /**
+     * Remove {@link Presenter} destroy listener
+     *
+     * @param listener {@link com.halzhang.android.mvp.presenter.Presenter.OnPresenterDestroyListener}
+     * @return
+     */
+    private boolean removeDestroyListener(OnPresenterDestroyListener listener) {
+        return mListeners.remove(listener);
     }
 
 }

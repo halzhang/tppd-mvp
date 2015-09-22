@@ -53,6 +53,11 @@ public class PresenterManagerTest extends ActivityInstrumentationTestCase2 {
         }
 
         @Override
+        public Object createViewCallback(IView view) {
+            return null;
+        }
+
+        @Override
         protected void onSave(@NonNull Bundle saveState) {
             super.onSave(saveState);
             saveState.putInt("test_int", 1);

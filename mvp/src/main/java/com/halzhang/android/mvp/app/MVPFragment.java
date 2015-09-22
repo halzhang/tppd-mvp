@@ -11,7 +11,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP Fragment
  * Created by Hal on 15/4/27.
  */
-public abstract class MVPFragment<PresenterType extends Presenter> extends Fragment implements Presenter.IView {
+public abstract class MVPFragment<PresenterType extends Presenter> extends Fragment {
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
 
@@ -28,7 +28,9 @@ public abstract class MVPFragment<PresenterType extends Presenter> extends Fragm
     @Override
     public void onResume() {
         super.onResume();
-        mHelper.attachView(this, getActivity());
+        if (this instanceof Presenter.IView) {
+            mHelper.attachView((Presenter.IView) this);
+        }
     }
 
     @Override
