@@ -1,1 +1,1 @@
-include ':mvp', ':mvp-example'
+include ':mvp', ':mvp-example', ':mvp-support-v4', ':mvp-support-v7'

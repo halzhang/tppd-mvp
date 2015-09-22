@@ -7,6 +7,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
+ * Presenter annotation
  * Created by Hal on 15/4/29.
  */
 @Inherited
