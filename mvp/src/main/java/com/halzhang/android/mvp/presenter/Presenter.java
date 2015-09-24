@@ -2,33 +2,25 @@ package com.halzhang.android.mvp.presenter;
 
 import android.os.Bundle;
 
-import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Presenter
+ * Presenter,ViewType 业务回调接口，监听业务执行结果；CallbackType 业务接口
  * Created by Hal on 15/4/27.
  */
 public abstract class Presenter<ViewType extends Presenter.IView<CallbackType>, CallbackType> {
 
     /**
-     * 视图业务接口
-     *
-     * @param <CallbackType> 视图回调接口，定义了从 Presenter 调用 view 的相关接口
+     * 业务回调接口
      */
     public interface IView<CallbackType> {
         public void setCallback(CallbackType callback);
     }
 
     /**
-     * 创建视图回调接口,对于不同业务，回调是不同的
-     *
-     * @param view 视图业务接口
-     * @return 视图回调接口
+     * 创建业务接口
      */
     public abstract CallbackType createViewCallback(IView view);
-
-
 
     private ViewType mView;
 
@@ -83,6 +75,7 @@ public abstract class Presenter<ViewType extends Presenter.IView<CallbackType>, 
     public interface OnPresenterDestroyListener {
         void onDestroy(Presenter presenter);
     }
+
     /**
      * Add {@link Presenter} destroy listener
      *

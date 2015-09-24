@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @RunWith(AndroidJUnit4.class)
 public class PresenterManagerTest extends ActivityInstrumentationTestCase2 {
+    
     public PresenterManagerTest() {
         super(TestActivity.class);
     }
