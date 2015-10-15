@@ -13,7 +13,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base MVP {@link AppCompatActivity}
  * Created by Hal on 15/5/10.
  */
-public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback> extends AppCompatActivity implements Presenter.IView<IViewCallback> {
+public class MVPAppCompatActivity<PresenterType extends Presenter> extends AppCompatActivity {
 
     private static final String LOG_TAG = MVPAppCompatActivity.class.getSimpleName();
 
@@ -38,7 +38,9 @@ public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback
     @Override
     protected void onResume() {
         super.onResume();
-        mHelper.attachView(this);
+        if (this instanceof Presenter.IView) {
+            mHelper.attachView((Presenter.IView) this);
+        }
     }
 
     @Override
@@ -53,12 +55,4 @@ public class MVPAppCompatActivity<PresenterType extends Presenter, IViewCallback
         super.onDestroy();
     }
 
-    @Override
-    public void setCallback(IViewCallback callback) {
-        onSetCallback(callback);
-    }
-
-    protected void onSetCallback(IViewCallback callback) {
-        Log.d(LOG_TAG, "onSetCallback");
-    }
 }

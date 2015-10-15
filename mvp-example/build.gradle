@@ -17,9 +17,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
+
+
 dependencies {
+    compile project(':mvp')
+    compile project(':mvp-support-v4')
+    compile project(':mvp-support-v7')
     compile project(':mvp')
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.0'
@@ -27,4 +40,5 @@ dependencies {
     compile 'io.reactivex:rxandroid:0.24.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.github.halzhang:bottom-tab-indicator:1.0.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }

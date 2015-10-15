@@ -12,7 +12,7 @@ import com.halzhang.android.mvp.presenter.Presenter;
  * Base mvp {@link FragmentActivity}
  * Created by Hal on 15/5/10.
  */
-public abstract class MVPFragmentActivity<PresenterType extends Presenter> extends FragmentActivity implements Presenter.IView{
+public class MVPFragmentActivity<PresenterType extends Presenter> extends FragmentActivity {
 
 
     private PresenterHelper<PresenterType> mHelper = new PresenterHelper<>();
@@ -36,7 +36,9 @@ public abstract class MVPFragmentActivity<PresenterType extends Presenter> exten
     @Override
     protected void onResume() {
         super.onResume();
-        mHelper.attachView(this);
+        if (this instanceof Presenter.IView) {
+            mHelper.attachView((Presenter.IView) this);
+        }
     }
 
     @Override
